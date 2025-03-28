@@ -1,0 +1,4 @@
+nextcord
+nest_asyncio
+playwright
+beautifulsoup4
