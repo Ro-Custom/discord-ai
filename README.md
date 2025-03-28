@@ -2,7 +2,7 @@
 free AI-Bot based on puter.js
 
 download req.txt and open cmd.exe, start `pip install -r requirements.txt`
-or pip install nextcord nest_asyncio beautifulsoup4 playwright
+or `pip install nextcord nest_asyncio beautifulsoup4 playwright`
 
 then `python -m playwright install chromium`
 
