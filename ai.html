@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puter AI Chat</title>
+    <script src="https://js.puter.com/v2/"></script>
+</head>
+<body>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const question = getQueryParam('question');
+
+        function getResponse(question) {
+            return puter.ai.chat(question)
+                .then(function(response) {
+                    const result = {
+                        response: response
+                    };
+
+                    return result;
+                })
+                .catch(function(err) {
+                    const errorResult = {
+                        error: 'Ошибка запроса к Puter.js',
+                        details: err
+                    };
+                    return errorResult;
+                });
+        }
+
+        if (question) {
+            getResponse(question).then((jsonResult) => {
+                document.body.innerHTML = `<pre>${JSON.stringify(jsonResult, null, 2)}</pre>`;
+            });
+        } else {
+            const errorResult = {
+                error: 'where your param "question"?'
+            };
+            document.body.innerHTML = `<pre>${JSON.stringify(errorResult, null, 2)}</pre>`;
+        }
+    </script>
+</body>
+</html>
