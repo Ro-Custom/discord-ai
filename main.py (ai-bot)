@@ -41,7 +41,7 @@ async def on_message(message):
 
         await message.reply("⏳ I'm getting a response, please wait...")
 
-        url = f"https://api-disai.netlify.app/ai.html?question={user_question}" # I recommend using NETLIFY (https://www.netlify.com/), 
+        url = f"https://YOURLINK-HERE.netlify.app/ai.html?question={user_question}" # I recommend using NETLIFY (https://www.netlify.com/), deploy ai.html and get link
 
         context = browser.new_context(user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
         page = context.new_page()
@@ -52,7 +52,7 @@ async def on_message(message):
         try:
             page.click('button#launch-auth-popup')
         except Exception as e:
-            await message.reply(f"❌ Ошибка при аутентификации: {e}")
+            await message.reply(f"❌ Auth error: {e}")
             return
 
         max_wait_time = 60
@@ -78,7 +78,7 @@ async def on_message(message):
         if extracted_content:
             await asyncio.create_task(message.reply(f"💬 {extracted_content}"))
         else:
-            await message.reply("❌ Ошибка: Не удалось получить ответ.")
+            await message.reply("❌ Error: {e}")
 
 
 async def run_bot():
@@ -88,4 +88,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(run_bot())
     except RuntimeError as e:
-        print(f"Ошибка при запуске бота: {e}")
+        print(f"{e}")
